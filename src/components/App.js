@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import Navigation from './Navigation'
+import Login from './Login'
+import { Container, Row, Col } from 'reactstrap';
+
 import '../css/App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+      <Navigation />
         <header className="App-header">
-         
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+           <Container>    
+                <Row>
+                  <Col sm={{ size: 4, order: 2, offset: 4 }}><Login /></Col>
+                </Row>
+           </Container>
         </header>
       </div>
     );
