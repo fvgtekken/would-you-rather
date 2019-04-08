@@ -87,3 +87,6 @@ Bootstrap needs two dependencies:
 ### `yarn add --save reactstrap react react-dom`  Reactstrap
 ### `yarn add bootstrap --save`   Bootstrap
 for further details visit here: https://reactstrap.github.io/
+
+Icons and Fonts:
+### for further details visit here:  https://github.com/iconic/open-iconic
