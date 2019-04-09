@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 import Navigation from './Navigation'
@@ -9,7 +10,7 @@ import LeaderBoard from './LeaderBoard'
 import AwnserQuestion from './AwnserQuestion'
 import QuestionVotes from './QuestionVotes'
 
-import '../css/App.css';
+import '../assets/css/App.css';
 
 class App extends Component {
 

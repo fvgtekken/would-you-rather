@@ -11,6 +11,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+  import { NavLink as RRNavLink } from 'react-router-dom';
+
+
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -35,13 +38,13 @@ class Navigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">Home</NavLink>
+                <NavLink tag={RRNavLink} to="/questions">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">New Question</NavLink>
+                <NavLink tag={RRNavLink} to="/addQuestion">New Question</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">LeaderBoard</NavLink>
+                <NavLink tag={RRNavLink} to="/leaderBoard">LeaderBoard</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -49,7 +52,7 @@ class Navigation extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    LogOut
+                     <NavLink tag={RRNavLink} to="/login">LogOut</NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                 </DropdownMenu>
