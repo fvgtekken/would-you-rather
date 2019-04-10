@@ -2,10 +2,10 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL:'',
+    avatarURL: 'https://image.ibb.co/cAX53K/8biticon_sarah_edo.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
-      "6ni6ok3ym7mf1p33lnez": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne',
       "am8ehyc8byjqgar0jgpub9": 'optionTwo',
       "loxhs1bqm25b708cmbf3g": 'optionTwo'
     },
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '',
+    avatarURL: 'https://image.ibb.co/nBKrce/8biticon_tyler_mcginnis.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,11 +24,11 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: '',
+    avatarURL: 'https://image.ibb.co/mJOOqz/8biticon_john_doe.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionTwo'
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
   }
@@ -53,12 +53,12 @@ let questions = {
     author: 'johndoe',
     timestamp: 1468479767190,
     optionOne: {
-      votes: [],
+      votes: ['sarahedo'],
       text: 'become a superhero',
     },
     optionTwo: {
-      votes: ['johndoe', 'sarahedo'],
-      text: 'become a supervillain'
+      votes: ['johndoe'],
+      text: 'become a supervillian'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
@@ -120,8 +120,9 @@ function generateUID () {
 }
 
 export function _getUsers () {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...users}), 1000)
+  return new Promise((resolve, reject) => {
+   
+    setTimeout(() => resolve({...users}), 0)
   })
 }
 
@@ -157,7 +158,7 @@ export function _saveQuestion (question) {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
       }
-      
+
       users = {
         ...users,
         [authedUser]: {
