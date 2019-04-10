@@ -1,4 +1,4 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+/*import { showLoading, hideLoading } from 'react-redux-loading-bar'*/
 import {
   _saveQuestion,
   _saveQuestionAnswer } from '../utils/_DATA'
@@ -63,10 +63,10 @@ export function handleVote (authedUser, qid, answer) {
 
 export function fetchInitialData () {
   return (dispatch) => Promise.all([
-    dispatch(showLoading()),
+   /* dispatch(showLoading()),*/
     dispatch(fetchUsers()),
     dispatch(fetchQuestions())
   ]).then(() => {
-    dispatch(hideLoading())
+    /*dispatch(hideLoading())*/
   })
 }

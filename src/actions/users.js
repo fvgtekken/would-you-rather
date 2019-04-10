@@ -51,8 +51,10 @@ export function updateUsers (users) {
 /* async call to fetch all users */
 export function fetchUsers () {
   return (dispatch) => {
+
     return _getUsers().then((users) => {
-      dispatch(updateUsers(users))
+
+          dispatch(updateUsers(users))
     })
   }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
 import { Row, Col, Button, Form, FormGroup, Label, Input, FormText,  Card, 
-  CardHeader, CardBody, CardTitle, CardText } from 'reactstrap'
+  CardHeader, CardBody } from 'reactstrap'
 
 class LogIn extends Component {
 
@@ -19,38 +21,43 @@ class LogIn extends Component {
     console.log(e);
   }
 
-  renderForm = () => (
-    <form onSubmit={this.handleSubmit}>
+  renderForm = () => {
+
+    
+
+
+   return(<form onSubmit={this.handleSubmit}>
        <FormGroup>
           <Label for="compSelect">Select</Label>
-          <Input type="select" name="select" id="compSelect">
-            <option>User 1</option>
-            <option>User 2</option>
-            <option>User 3</option>
-            <option>User 4</option>
-            <option>User 5</option>
+          <Input type="select" name="select" id="compSelect" onChange={this.handleChange}>
+          <option hidden value="default">Select a user...</option>
+          {(Object.values(this.props.users)).map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.id}
+            </option>
+          ))}
           </Input>
         </FormGroup>
       <Button  className="ButtonCard" color="primary"
         disabled={this.state.disabled}
-        type="submit" bsStyle="info">
+        type="submit" >
         Sign In
       </Button>
-    </form>
-  )
+    </form>) 
+  }
 
 
   render() {
+    
     return (
       <Row>
         <Col sm={{ size: 8, offset: 2 }} >
               <Card style={{ color: '#333' }}>
                  <CardHeader>Sign in:</CardHeader>
                   <CardBody>
-                     <CardText>
-                      <CardTitle></CardTitle>
-                       <CardText>{this.renderForm()}</CardText>         
-                    </CardText>
+                   
+                       {this.renderForm()}         
+                   
                   </CardBody>                
                </Card>
         </Col>
@@ -59,6 +66,8 @@ class LogIn extends Component {
   }
 }
 
+function mapStateToProps ({ users }) {
+  return { users }
+}
 
-
-export default LogIn
+export default connect(mapStateToProps)(LogIn)

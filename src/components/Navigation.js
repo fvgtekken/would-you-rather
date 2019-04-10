@@ -1,16 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav,
+  NavItem, NavLink, UncontrolledDropdown, DropdownToggle, 
+  DropdownMenu, DropdownItem } from 'reactstrap';
   import { NavLink as RRNavLink } from 'react-router-dom';
 
 
@@ -29,11 +22,21 @@ class Navigation extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  render() {
-    return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Wolud you Rather</NavbarBrand>
+  
+
+  navItemsLogin = () => {
+
+     return (<Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Wolud you Rather</NavbarBrand>
+        </Navbar>)
+  }
+
+
+  navItemsAuthed = () => {
+
+      return (<Navbar color="light" light expand="md">
+          
+        <NavbarBrand href="/">Wolud you Rather</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -59,10 +62,31 @@ class Navigation extends React.Component {
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
-        </Navbar>
+        </Navbar>)
+
+  }
+
+  //{this.props.userIsAuthed && this.getNavItems()}
+
+
+  render() {
+
+    console.log(this.props.userIsAuthed)
+
+    return (
+      <div>
+         {this.props.userIsAuthed?this.navItemsAuthed():this.navItemsLogin()}
       </div>
     );
   }
 }
 
-export default Navigation;
+function mapStateToProps ({ authedUser, users }) {
+  return {
+    userIsAuthed: authedUser !== null,
+    username: users[authedUser] ? users[authedUser].name : null,
+    avatar: users[authedUser] ? users[authedUser].avatarURL : null
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
