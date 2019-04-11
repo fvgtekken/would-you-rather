@@ -1,8 +1,8 @@
 let users = {
-  sarahedo: {
-    id: 'sarahedo',
-    name: 'Sarah Edo',
-    avatarURL: 'https://image.ibb.co/cAX53K/8biticon_sarah_edo.jpg',
+  badcat: {
+    id: 'badcat',
+    name: 'Bad Cat',
+    avatarURL: 'https://i.ibb.co/tPMmMS3/bad-cat.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -11,20 +11,42 @@ let users = {
     },
     questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
   },
-  tylermcginnis: {
-    id: 'tylermcginnis',
-    name: 'Tyler McGinnis',
-    avatarURL: 'https://image.ibb.co/nBKrce/8biticon_tyler_mcginnis.jpg',
+  warriorfish: {
+    id: 'warriorfish',
+    name: 'Warrior Fish',
+    avatarURL: 'https://i.ibb.co/yywCrZs/warrior-fish.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
     },
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
   },
-  johndoe: {
-    id: 'johndoe',
-    name: 'John Doe',
-    avatarURL: 'https://image.ibb.co/mJOOqz/8biticon_john_doe.jpg',
+  mapachechonquis: {
+    id: 'mapachechonquis',
+    name: 'Mapache Chonquis',
+    avatarURL: 'https://i.ibb.co/jvv6LVM/mapache-chonquis.jpg',
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  }, 
+    wilddog: {
+    id: 'wilddog',
+    name: 'Wild Dog',
+    avatarURL: 'https://i.ibb.co/Rhx3hCM/wild-dog.jpg',
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },// 
+   angelcow: {
+    id: 'angelcow',
+    name: 'Angel Cow',
+    avatarURL: 'https://i.ibb.co/k6Dw7Bq/angel-cow.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -37,10 +59,10 @@ let users = {
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
-    author: 'sarahedo',
+    author: 'badcat',
     timestamp: 1467166872634,
     optionOne: {
-      votes: ['sarahedo'],
+      votes: ['badcat'],
       text: 'have horrible short term memory',
     },
     optionTwo: {
@@ -50,66 +72,66 @@ let questions = {
   },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
-    author: 'johndoe',
+    author: 'warriorfish',
     timestamp: 1468479767190,
     optionOne: {
-      votes: ['sarahedo'],
+      votes: ['mapachechonquis'],
       text: 'become a superhero',
     },
     optionTwo: {
-      votes: ['johndoe'],
+      votes: ['badcat'],
       text: 'become a supervillian'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
-    author: 'sarahedo',
+    author: 'mapachechonquis',
     timestamp: 1488579767190,
     optionOne: {
       votes: [],
       text: 'be telekinetic',
     },
     optionTwo: {
-      votes: ['sarahedo'],
+      votes: ['angelcow'],
       text: 'be telepathic'
     }
   },
   "loxhs1bqm25b708cmbf3g": {
     id: 'loxhs1bqm25b708cmbf3g',
-    author: 'tylermcginnis',
+    author: 'angelcow',
     timestamp: 1482579767190,
     optionOne: {
       votes: [],
       text: 'be a front-end developer',
     },
     optionTwo: {
-      votes: ['sarahedo'],
+      votes: ['angelcow'],
       text: 'be a back-end developer'
     }
   },
   "vthrdm985a262al8qx3do": {
     id: 'vthrdm985a262al8qx3do',
-    author: 'tylermcginnis',
+    author: 'warriorfish',
     timestamp: 1489579767190,
     optionOne: {
-      votes: ['tylermcginnis'],
+      votes: ['warriorfish'],
       text: 'find $50 yourself',
     },
     optionTwo: {
-      votes: ['johndoe'],
+      votes: ['angelcow'],
       text: 'have your best friend find $500'
     }
   },
   "xj352vofupe1dqz9emx13r": {
     id: 'xj352vofupe1dqz9emx13r',
-    author: 'johndoe',
+    author: 'wilddog',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['johndoe'],
+      votes: ['wilddog'],
       text: 'write JavaScript',
     },
     optionTwo: {
-      votes: ['tylermcginnis'],
+      votes: ['angelcow'],
       text: 'write Swift'
     }
   },
