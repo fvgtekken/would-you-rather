@@ -1,121 +1,57 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Row, Col, Card, CardHeader, CardBody,
+  CardTitle, CardText, ListGroup, ListGroupItem  } from 'reactstrap';
 
-import { Row, Col, Card, Button, CardHeader, CardFooter, CardBody,
-  CardTitle, CardText, ListGroup, ListGroupItem, Badge  } from 'reactstrap';
 
-import classnames from 'classnames'
 
 class LeaderBoard extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      activeTab: '1'
-    };
-  }
-
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      });
-    }
-  }
-
-  handleChange = (e) => {
-    console.log(e);
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(e);
-  }
-
-  /*renderForm = () => (
-    <form onSubmit={this.handleSubmit}>
-       <FormGroup>
-          <Input type="text" name="question1" id="question1" placeholder="Enter First Question" />
-        </FormGroup>
-          <div>or...</div>
-        <FormGroup>
-          <Input type="text" name="question2" id="question2" placeholder="Enter Second Question" />
-        </FormGroup>
-      <Button
-        disabled={this.state.disabled}
-        type="submit" bsStyle="info">
-        Enter
-      </Button>
-    </form>
-  )*/
 
   render() {
+
     return (
       <div>
-     <Row>
-        <Col sm="12">
-          <Card style={{ color: '#333' }}>
-                  <CardHeader>User1 Awnser</CardHeader>
-                  <CardBody>
-                     <CardText>
-                      <CardTitle></CardTitle>
-                        <ListGroup>
-                        <Row>
-                          <Col sm="3"> 
-                            <img src={require("../assets/images/1.jpg")} className="rounded-circle" />
-                          </Col>
-                          <Col sm="6" className="ColListGroupItem"> 
-                            <ListGroupItem>4 Awsered Questions</ListGroupItem>
-                            <ListGroupItem>2 Created Questions</ListGroupItem>
-                          </Col>
-                          <Col sm="3"> 
-                            <Card>
-                              <CardHeader>SCORE</CardHeader>
-                              <CardBody>
-                                <CardText>6</CardText>
-                              </CardBody>                         
-                          </Card>
-                          </Col>
-                        </Row>                     
-                      </ListGroup>          
-                    </CardText>
-                  </CardBody>
-                </Card>
-        </Col>
-      </Row>
-    <hr/>
-      <Row>
-        <Col sm="12">
-          <Card style={{ color: '#333' }}>
-                  <CardHeader>User2 Awnser</CardHeader>
-                  <CardBody>
-                     <CardText>
-                      <CardTitle></CardTitle>
-                        <ListGroup>
-                        <Row>
-                          <Col sm="3"> 
-                            <img src={require("../assets/images/1.jpg")} className="rounded-circle" />
-                          </Col>
-                          <Col sm="6" className="ColListGroupItem"> 
-                            <ListGroupItem>2 Awsered Questions</ListGroupItem>
-                            <ListGroupItem>1 Created Questions</ListGroupItem>
-                          </Col>
-                          <Col sm="3"> 
-                            <Card>
-                              <CardHeader>SCORE</CardHeader>
-                              <CardBody>
-                                <CardText>3</CardText>
-                              </CardBody>                         
-                          </Card>
-                          </Col>
-                        </Row>                     
-                      </ListGroup>          
-                    </CardText>
-                  </CardBody>
-                </Card>
-        </Col>
-      </Row>
+       {this.props.leaders.map((leader, index) => {
+          
+             return (<Row>
+                <Col sm="12">
+                  <Card style={{ color: '#333' }}>
+                     <CardHeader>{leader.name} Awnser And Created Questions!</CardHeader>
+                        <CardBody>
+                           <CardText>
+                            <CardTitle></CardTitle>
+                              <ListGroup>
+                              <Row>
+                                <Col sm="3"> 
+                                  <img src={leader.avatarURL} alt="..." className="w-100 h-100 rounded-top rounded-bottom" />
+                                </Col>
+                                <Col sm="6" className="ColListGroupItem"> 
+                                  <ListGroupItem>
+                                        <span>{(Object.keys(leader.answers)).length}</span> Answered Questions
+                                  </ListGroupItem>
+                                  <ListGroupItem>
+                                        <span>{leader.questions.length}</span> Created Questions
+                                  </ListGroupItem>
+                                </Col>
+                                <Col sm="3"> 
+                                  <Card>
+                                    <CardHeader>SCORE</CardHeader>
+                                    <CardBody>
+                                      <CardText>{(Object.keys(leader.answers)).length + leader.questions.length}</CardText>
+                                    </CardBody>                         
+                                </Card>
+                                </Col>
+                              </Row>                     
+                            </ListGroup>          
+                          </CardText>
+                        </CardBody>
+                        </Card><hr/>
+                    </Col>
+                </Row>)
+            }
+        )}
+
       </div>
     );
   }
@@ -123,4 +59,18 @@ class LeaderBoard extends Component {
 
 
 
-export default LeaderBoard
+function mapStateToProps ({ users, authedUser }) {
+
+  const sortedLeaders = (Object.values(users)).sort((a, b) => {
+    const aRank = (Object.keys(a.answers)).length + a.questions.length
+    const bRank = (Object.keys(b.answers)).length + b.questions.length
+    return bRank >= aRank
+  })
+
+  return {
+    authedUser,
+    leaders: sortedLeaders
+  }
+}
+
+export default connect(mapStateToProps)(LeaderBoard)

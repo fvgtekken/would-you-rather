@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, Button, FormGroup, Label, Input,  Card, 
   CardHeader, CardBody, CardTitle, CardText } from 'reactstrap'
 
-class AwnserQuestion extends Component {
+class QuestionAnswering extends Component {
 
   state = {
     imgSrc: '/favicon.png',
@@ -70,4 +70,4 @@ class AwnserQuestion extends Component {
 
 
 
-export default AwnserQuestion
+export default QuestionAnswering

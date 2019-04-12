@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading-bar'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 import Navigation from './Navigation'
 import Login from './Login'
 import QuestionsContainer from './QuestionsContainer'
+import Home from './Home'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
-import AwnserQuestion from './AwnserQuestion'
-import QuestionVotes from './QuestionVotes'
 import { getAuthedUserFromCookie } from '../actions/authedUser'
 import { fetchInitialData } from '../actions/shared'
 
@@ -25,21 +25,19 @@ class App extends Component {
 
   loginRoutes = () => (
     <Switch>
-      <Route exact path='/' component={Login} />
-      <Redirect from='*' to='/' />
+      <Route exact path='/login' component={Login} />
+      <Redirect from='*' to='/login' />
     </Switch>
   )
 
 
  authedRoutes = () => (
     <Switch>
-      <Route exact path='/' component={Login} />
-      <Route exact path='/awnserQuestion' component={AwnserQuestion} />
-      <Route exact path='/questionVotes' component={QuestionVotes} />
+      <Route exact path='/' component={Home} />
+      <Route exact path='/questions/:questionId' component={ QuestionsContainer } />
       <Route exact path='/addQuestion' component={NewQuestion} />
       <Route exact path='/leaderBoard' component={LeaderBoard} />
-      <Route exact path='/questions' component={QuestionsContainer} />
-      <Route exact path='/login' component={Login} />
+      <Route exact path='/questions' component={Home} />
       <Redirect from='*' to='/' />
     </Switch>
   )
@@ -53,6 +51,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Fragment>
+          <LoadingBar className="loading" />
             <div className="App">
             <Navigation />
               <header className="App-header">
@@ -76,7 +75,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser, questions }) {
   return {
-    //loading: Object.keys(questions).length === 0,
+    loading: Object.keys(questions).length === 0,
     displayLogin: authedUser === null
   }
 }

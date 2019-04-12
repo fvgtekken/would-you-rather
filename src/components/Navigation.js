@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { logoutAuthedUser } from '../actions/authedUser'
 import {
   Collapse, Navbar, NavbarToggler, NavbarBrand, Nav,
   NavItem, NavLink, UncontrolledDropdown, DropdownToggle, 
@@ -24,6 +25,11 @@ class Navigation extends React.Component {
   }
   
 
+  logout = (e) => {
+    e.preventDefault()
+    this.props.dispatch(logoutAuthedUser())
+  }
+
   navItemsLogin = () => {
 
      return (<Navbar color="light" light expand="md">
@@ -31,6 +37,13 @@ class Navigation extends React.Component {
         </Navbar>)
   }
 
+
+  getUserAuthedInfo = () => (
+    <span className="navbar-user-info">
+      <span className="text-login-authed">{this.props.username}</span>
+       <img src={this.props.avatar} alt="..." className="rounded-top rounded-bottom img-login-authed" />
+    </span>
+  )
 
   navItemsAuthed = () => {
 
@@ -51,11 +64,11 @@ class Navigation extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                 Fede vonGro
+                 <span>{this.getUserAuthedInfo()}</span>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                     <NavLink tag={RRNavLink} to="/login">LogOut</NavLink>
+                     <NavLink tag={RRNavLink} to="/login" onClick={this.logout} >LogOut</NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                 </DropdownMenu>
@@ -71,7 +84,7 @@ class Navigation extends React.Component {
 
   render() {
 
-    console.log(this.props.userIsAuthed)
+ 
 
     return (
       <div>

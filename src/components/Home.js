@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, TabContent, TabPane, Nav, 
-   NavItem, NavLink, Button, Card ,CardHeader, CardFooter, CardBody,
-  CardTitle, CardText, ListGroup, ListGroupItem, Badge } from 'reactstrap'
-
-import { NavLink as RRNavLink } from 'react-router-dom'
+   NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
 /*import CardQuestions from './CardQuestions'*/
 import  QuestionList  from './QuestionList'
@@ -52,7 +49,7 @@ class Home extends Component {
      
       <Row>
           <Col sm={{ size: 12}} >
-          <div>
+        
         <Nav tabs>
           <NavItem>
              <NavLink
@@ -85,7 +82,7 @@ class Home extends Component {
             </Row>
           </TabPane>
         </TabContent>
-      </div>
+     
         </Col>
       </Row>
    

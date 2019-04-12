@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Col, Button, Input, FormText,  Card, 
-  CardHeader, CardBody, CardTitle, CardText,  ListGroup, ListGroupItem, Badge, Progress  } from 'reactstrap'
+import { Row, Col,  Card, 
+  CardHeader, CardBody, CardTitle, CardText,  ListGroup, ListGroupItem, Progress  } from 'reactstrap'
 
 class QuestionVotes extends Component {
 
@@ -52,7 +52,7 @@ class QuestionVotes extends Component {
                         <ListGroup>
                         <Row>
                           <Col sm="3"> 
-                            <img src={require("../assets/images/1.jpg")} className="rounded-circle" />
+                            <img src={require("../assets/images/1.jpg")} alt="..." className="rounded-circle" />
                           </Col>
                           <Col sm="9" className="ColListGroupItem"> 
                             <ListGroupItem>

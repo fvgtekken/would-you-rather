@@ -1,7 +1,5 @@
 import React from 'react'
-import { Row, Col, Button, Card ,CardHeader, CardBody,
-  CardTitle, CardText, ListGroup, ListGroupItem, Badge  } from 'reactstrap'
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { Row, Col } from 'reactstrap'
 import QuestionPreview from './QuestionPreview'
  
 
@@ -11,7 +9,7 @@ import QuestionPreview from './QuestionPreview'
         const questionsArray = Object.values(questions)
         const orderedQuestions = questionsArray.sort((a, b) => {
         return b.timestamp - a.timestamp // newest first
-        })
+  })
 
 
      
