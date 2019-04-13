@@ -89,4 +89,4 @@ Bootstrap needs two dependencies:
 for further details visit here: https://reactstrap.github.io/
 
 Icons and Fonts:
-### for further details visit here:  https://github.com/iconic/open-iconic
+### for further details visit here:  https://github.com/FortAwesome/react-fontawesome
