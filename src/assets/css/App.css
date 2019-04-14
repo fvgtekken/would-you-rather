@@ -78,13 +78,10 @@
   font-size: 14pt;
 }
 
-
-.panel-votes {
-  color: #fff;
-  background-color: #df4b0a;
-  font-size:10pt;
-  margin-left: 30px;
+.icon-vote {
+    background-color: #df4b0a;
 }
+
 
 
   .nav.nav-tabs .nav-item .active.nav-link:hover{
