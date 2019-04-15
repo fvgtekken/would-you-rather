@@ -4,33 +4,27 @@ let users = {
     name: 'Bad Cat',
     avatarURL: 'https://i.ibb.co/tPMmMS3/bad-cat.jpg',
     answers: {
-      "8xf0y6ziyjabvozdd253nd": 'optionOne',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne',
-      "am8ehyc8byjqgar0jgpub9": 'optionTwo',
-      "loxhs1bqm25b708cmbf3g": 'optionTwo'
+     
     },
-    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+    questions: ['am8ehyc8byjqgar0jgpub9']
   },
   warriorfish: {
     id: 'warriorfish',
     name: 'Warrior Fish',
     avatarURL: 'https://i.ibb.co/yywCrZs/warrior-fish.jpg',
     answers: {
-      "vthrdm985a262al8qx3do": 'optionOne',
-      "xj352vofupe1dqz9emx13r": 'optionTwo',
+      
     },
-    questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
+    questions: ['vthrdm985a262al8qx3do'],
   },
   mapachechonquis: {
     id: 'mapachechonquis',
     name: 'Mapache Chonquis',
     avatarURL: 'https://i.ibb.co/jvv6LVM/mapache-chonquis.jpg',
     answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+  
     },
-    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+    questions: ['6ni6ok3ym7mf1p33lnez'],
   },
 
 wilddog: {
@@ -38,9 +32,7 @@ wilddog: {
     name: 'Wild Dog',
     avatarURL: 'https://i.ibb.co/Rhx3hCM/wild-dog.jpg',
     answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+   
     },
     questions: ['9ni6ok9ym7mf1p99lnez'],
   },
@@ -49,9 +41,7 @@ wilddog: {
     name: 'Angel Cow',
     avatarURL: 'https://i.ibb.co/k6Dw7Bq/angel-cow.jpg',
     answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "1ni4oklym7mf3p44lnez": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    
     },
     questions: ['1ni4oklym7mf3p44lnez'],
   }
@@ -64,7 +54,7 @@ let questions = {
     author: 'wilddog',
     timestamp: 1467166872634,
     optionOne: {
-      votes: ['badcat'],
+      votes: [],
       text: 'be a Milli Vanilli',
     },
     optionTwo: {
@@ -73,29 +63,16 @@ let questions = {
     }
   },
 
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    author: 'badcat',
-    timestamp: 1467166872634,
-    optionOne: {
-      votes: ['badcat'],
-      text: 'have horrible short term memory',
-    },
-    optionTwo: {
-      votes: [],
-      text: 'have horrible long term memory'
-    }
-  },
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     author: 'mapachechonquis',
     timestamp: 1468479767190,
     optionOne: {
-      votes: ['badcat','wilddog', 'angelcow'],
+      votes: [],
       text: 'become a superhero',
     },
     optionTwo: {
-      votes: ['mapachechonquis'],
+      votes: [],
       text: 'become a supervillian'
     }
   },
@@ -105,50 +82,25 @@ let questions = {
     timestamp: 1488579767190,
     optionOne: {
       votes: [],
-      text: 'be telekinetic',
+      text: 'be SnowBoarder',
     },
     optionTwo: {
-      votes: ['badcat'],
-      text: 'be telepathic'
-    }
-  },
-  "loxhs1bqm25b708cmbf3g": {
-    id: 'loxhs1bqm25b708cmbf3g',
-    author: 'warriorfish',
-    timestamp: 1482579767190,
-    optionOne: {
       votes: [],
-      text: 'be a front-end developer',
-    },
-    optionTwo: {
-      votes: ['badcat'],
-      text: 'be a back-end developer'
+      text: 'be a Professional Cumbia Dancer'
     }
   },
+
   "vthrdm985a262al8qx3do": {
     id: 'vthrdm985a262al8qx3do',
     author: 'warriorfish',
     timestamp: 1489579767190,
     optionOne: {
-      votes: ['warriorfish'],
-      text: 'find $50 yourself',
+      votes: [],
+      text: 'Ride a Motocycle',
     },
     optionTwo: {
-      votes: ['mapachechonquis', 'wilddog'],
-      text: 'have your best friend find $500'
-    }
-  },
-  "xj352vofupe1dqz9emx13r": {
-    id: 'xj352vofupe1dqz9emx13r',
-    author: 'mapachechonquis',
-    timestamp: 1493579767190,
-    optionOne: {
-      votes: ['mapachechonquis','wilddog', 'angelcow'],
-      text: 'write JavaScript',
-    },
-    optionTwo: {
-      votes: ['warriorfish'],
-      text: 'write Swift'
+      votes: [],
+      text: 'Ride a pig'
     }
   },
   "1ni4oklym7mf3p44lnez": {
@@ -156,39 +108,42 @@ let questions = {
     author: 'angelcow',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['mapachechonquis','wilddog'],
+      votes: [],
       text: 'write a poem',
     },
     optionTwo: {
-      votes: ['angelcow'],
+      votes: [],
       text: 'write nothing at all'
     }
   }
 }
 
-function generateUID () {
+function generateID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export function _getUsers () {
+export function _dataGetUsers () {
   
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...users}), 1000)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({...users}), 1000)
   })
 
 }
 
-export function _getQuestions () {
+export function _dataGetQuestions () {
 
-  return new Promise((res, rej) => {
-    setTimeout(() => res({...questions}), 1000)
-  })
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve({...questions}), 1000)
+    })
 
 }
 
-function formatQuestion ({ optionOneText, optionTwoText, author }) {
+function setFormatQuestion ({ optionOneText, optionTwoText, author }) {
+
+
+  
   return {
-    id: generateUID(),
+    id: generateID(),
     timestamp: Date.now(),
     author,
     optionOne: {
@@ -202,16 +157,18 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
   }
 }
 
-export function _saveQuestion (question) {
-  
+export function _dataSaveQuestion (question) {
+
   return new Promise((resolve, reject) => {
     
     const authedUser = question.author;
-    const formattedQuestion = formatQuestion(question);
+    const formattedQuestion = setFormatQuestion(question);
 
     setTimeout(() => {
       questions = {
+        //spread all obj old question
         ...questions,
+        // add tne new quiestion formatted
         [formattedQuestion.id]: formattedQuestion
       }
 
@@ -228,7 +185,7 @@ export function _saveQuestion (question) {
   })
 }
 
-export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+export function _dataSaveQuestionAnswer ({ authedUser, qid, answer }) {
   
   return new Promise((res, rej) => {
 
@@ -248,7 +205,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
       questions = {
         ...questions,
         [qid]: {
-          ...questions[s],
+          ...questions[qid],
           [answer]: {
             ...questions[qid][answer],
             votes: questions[qid][answer].votes.concat([authedUser])

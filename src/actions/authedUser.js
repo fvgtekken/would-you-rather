@@ -1,5 +1,5 @@
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
-export const GET_AUTHED_USER_FROM_COOKIE = 'GET_AUTHED_USER_FROM_COOKIE'
+export const GET_AUTHED_USER_FROM_LOCAL = 'GET_AUTHED_USER_FROM_LOCAL'
 export const LOGOUT_AUTHED_USER = 'LOGOUT_AUTHED_USER'
 
 export function setAuthedUser (id) {
@@ -9,9 +9,9 @@ export function setAuthedUser (id) {
   }
 }
 
-export function getAuthedUserFromCookie () {
+export function getAuthedUserFromLocal () {
   return {
-    type: GET_AUTHED_USER_FROM_COOKIE,
+    type: GET_AUTHED_USER_FROM_LOCAL,
   }
 }
 

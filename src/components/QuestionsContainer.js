@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-/*import QuestionAnswering from './QuestionAnswering'*/
-
+import QuestionAnswering from './typeQuestion/QuestionAnswering'
+import QuestionResults from './typeQuestion/QuestionResults'
+import NoQuestion from './common/NoQuestion'
 
 /** Container component for answering questions or displaying results */
 const QuestionContainer = ({
@@ -12,22 +13,28 @@ const QuestionContainer = ({
   questionDoesNotExist
 }) => {
 
-  const renderQuestionNotFound = () => (
+  const renderQuestionNotFound = () => {
+  return (<div>  
+      <NoQuestion titleQuestion={'Bad Url -  Questions Found'}/>
+  </div>)
    
-      <div> Question not found </div>
-   
-  );
+  };
 
   const renderQuestionToAnswer = () => (
-    /*<QuestionAnswering
+    <QuestionAnswering
       question={question}
-      author={author} />*/
-       <div>Question To Awnser</div>
+      author={author} /> 
   );
 
   const renderQuestionResults = () => (
-    <div>View Results</div>
+   <QuestionResults   
+        question={question}
+        author={author}
+        optOne={optOne}
+        optTwo={optTwo} />
   )
+
+
 
   const optionToDisplay = () => {
    return  optOne || optTwo ? renderQuestionResults() : renderQuestionToAnswer()
@@ -35,9 +42,7 @@ const QuestionContainer = ({
 
   return (
     <div>
-       
-          {questionDoesNotExist ? renderQuestionNotFound() : optionToDisplay() }
-   
+      {questionDoesNotExist ? renderQuestionNotFound() : optionToDisplay() }
     </div>
   )
 }
@@ -45,11 +50,16 @@ const QuestionContainer = ({
 function mapStateToProps ({ users, questions, authedUser }, ownProps) {
   
   const question = questions[ownProps.match.params.questionId]
+
+  /*
+   * Url o Question Doesnt exits
+   */
+  if (!question){
+        return { questionDoesNotExist: true }
   
-  if (!question) // bad url
+  }
   
-  return { questionDoesNotExist: true }
-  
+
   const author = users[question.author]
   const optOne = question.optionOne.votes.includes(authedUser)
   const optTwo = question.optionTwo.votes.includes(authedUser)

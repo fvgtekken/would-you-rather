@@ -1,26 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Button, Card ,CardHeader, CardBody,
    ListGroup, ListGroupItem  } from 'reactstrap'
-
 import { NavLink as RRNavLink } from 'react-router-dom';
+import LazyLoad from 'react-lazy-load';
 
 
- 
-
- const QuestionPreview = (props) => {
-
-  const { question, author, answered } = props
-  const questionLink = `/questions/${question.id}`
+import ImageLoader from '../common/ImageLoader'
 
 
+
+class  QuestionPreview extends Component {
+
+
+  QuestionBtn = ( questionLink, answered ) => {
+
+  let titleButton;
+  answered ? titleButton = 'View Question': titleButton = 'Awnser The Question'
+  return (<Button  className="ButtonCard" color="primary" size="sm" tag={RRNavLink} to={questionLink}>{titleButton} </Button>)
+
+}
+
+  render()  {
+
+
+  
+
+   const { question, author, answered, index } = this.props
+   const questionLink = `/questions/${question.id}`
+
+     
+    
     return(  <Card style={{ color: '#333' }}>
                   <CardHeader>{author.name} {answered ? 'asked:' : 'asks:'}</CardHeader>
                       <CardBody>                  
                             <ListGroup>
                             <Row>
                               <Col sm="3"> 
-                                <img src={author.avatarURL} alt="..." className="w-100 h-100 rounded-top rounded-bottom" />
+                                 <LazyLoad key={index} >
+                                   
+                                  <ImageLoader src={author.avatarURL} responsiveClass={'w-100 h-100 rounded-top rounded-bottom'} />                               
+                                </LazyLoad>
                               </Col>
                               <Col sm="9" className="ColListGroupItem"> 
                                   <ListGroupItem>{question.optionOne.text}</ListGroupItem>
@@ -31,24 +51,17 @@ import { NavLink as RRNavLink } from 'react-router-dom';
                      
                       </CardBody>
                    <Col sm={{ size: 3, offset: 9 }} >
-                      {QuestionBtn(questionLink, answered)}
+                      
+                      {this.QuestionBtn(questionLink, answered)}
                    </Col>
           </Card>)
+
   }
-
- 
-const QuestionBtn = ( questionLink, answered ) => {
-
-  let titleButton;
-  answered ? titleButton = 'View Question': titleButton = 'Awnser The Question'
-  return (<Button  className="ButtonCard" color="primary" size="sm" tag={RRNavLink} to={questionLink}>{titleButton} </Button>)
-
 }
   
-   
 
-
-
+  
+  
 
 function mapStateToProps ({ users }, ownProps) {
 

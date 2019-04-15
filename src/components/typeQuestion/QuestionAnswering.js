@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleVote } from '../actions/shared'
+import { settingVote } from '../../actions/shared'
 import { Row, Col, Button, FormGroup, Label, Input,  Card, 
   CardHeader, CardBody } from 'reactstrap'
+import LazyLoad from 'react-lazy-load'
+import ImageLoader from '../common/ImageLoader'
 
 class QuestionAnswering extends Component {
 
@@ -19,7 +21,7 @@ class QuestionAnswering extends Component {
     const answer = this.state.selection
     
     if (answer) {
-      dispatch(handleVote(authedUser, question.id, answer))
+      dispatch(settingVote(authedUser, question.id, answer))
     }
   }
 
@@ -38,29 +40,30 @@ class QuestionAnswering extends Component {
 
    return(<form onSubmit={this.handleSubmit}>
        <FormGroup tag="fieldset">
-          <legend>Awnser A Question</legend>
+          <legend>Would You Rather...</legend>
           <FormGroup check>
             <Label check>
               <Input type="radio" 
                  onChange={this.handleChange}
                 name="opts"
                 value="optionOne" />{question.optionOne.text}
-              Question 1
+             
             </Label>
           </FormGroup>
+          <span>or</span>
           <FormGroup check>
             <Label check>
               <Input type="radio" 
                 onChange={this.handleChange}
                 name="opts"
                 value="optionTwo" />{question.optionTwo.text}
-               Question 2
+               
             </Label>
           </FormGroup>
       </FormGroup>
       <Button className="ButtonCard" color="primary"
-        disabled={this.state.disabled}
-        type="submit" bsStyle="info">
+        disabled={disabled}
+        type="submit">
         Enter
       </Button>
     </form>)
@@ -80,7 +83,9 @@ class QuestionAnswering extends Component {
             <Card style={{ color: '#333' }}>
             <CardHeader> Asked by {author.name}</CardHeader>
               <CardBody>
-              <img src={author.avatarURL} alt="..." className="w-100 h-100 rounded-top rounded-bottom" />        
+                <LazyLoad debounce={false} throttle={250}>
+                    <ImageLoader src={author.avatarURL} responsiveClass={'w-25 h-25 rounded-top rounded-bottom'}  />                               
+               </LazyLoad>
                   {this.renderForm()}      
               </CardBody>
             </Card>

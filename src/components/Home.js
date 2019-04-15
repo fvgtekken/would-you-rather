@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { Row, Col, TabContent, TabPane, Nav, 
    NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
-/*import CardQuestions from './CardQuestions'*/
 import  QuestionList  from './QuestionList'
-
 
 class Home extends Component {
 
@@ -21,9 +19,12 @@ class Home extends Component {
 
   }
 
-  toggle(tab) {
 
-    console.log(this.props)
+
+  toggle(tab, value) {
+
+      // Fix to forceCheck(); doenst work properly 
+     window.scrollTo(0, value)
 
     if (this.state.activeTab !== tab) {
       this.setState({
@@ -32,14 +33,8 @@ class Home extends Component {
     }
   }
 
-  handleChange = (e) => {
-    console.log(e);
-  }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(e);
-  }
+ 
 
   render() {
 
@@ -54,14 +49,14 @@ class Home extends Component {
           <NavItem>
              <NavLink
               className={classnames({ active: this.state.activeTab === '1' })}
-              onClick={() => { this.toggle('1'); }}>
+              onClick={() => { this.toggle('1', 0); }}>
               UnAwnsered Questions
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
-              onClick={() => { this.toggle('2'); }}>
+              onClick={() => { this.toggle('2', 3); }}>
               Awnsered Questions
             </NavLink>
           </NavItem>
@@ -80,6 +75,7 @@ class Home extends Component {
                 <QuestionList questions={answered} answered={true} />
               </Col>
             </Row>
+             <hr/>
           </TabPane>
         </TabContent>
      

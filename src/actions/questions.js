@@ -1,4 +1,4 @@
-import { _getQuestions } from '../utils/_DATA'
+import { _dataGetQuestions } from '../utils/_DATA'
 
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const REMOVE_QUESTION = 'REMOVE_QUESTION'
@@ -46,10 +46,21 @@ export function updateQuestions (questions) {
   }
 }
 
-/* async call to fetch all questions */
+/* 
+ fetch all questions 
+*/
 export function fetchQuestions () {
   return (dispatch) => {
-    return _getQuestions().then((questions) => {
+
+    // The Async call is for the method from _DATA.js
+    // that emulate BE.
+
+    return _dataGetQuestions().then((questions) => {
+      /*  
+       * all quiestions are fetched so the dispatch
+       / si called to present the new states of updates questions.
+  
+      */
       dispatch(updateQuestions(questions))
     })
   }

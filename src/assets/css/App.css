@@ -6,9 +6,6 @@
 
 .App-header {
   background-color: #c0bebb;
-
-
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -21,10 +18,18 @@
 }
 
 .container {
-  padding-top: 3%;
+  position:static;
+  padding-top: 5%;
   min-height: 790px;
 }
 
+.loading {
+  height: 5px;
+  background-color: #ff5a00;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
 
 /* CARD */
 .card-header {
@@ -48,38 +53,63 @@
   text-align: left;
 }
 
+.no-question {
+  align-self: center;
+}
+
 /******************************/
+
+
+@keyframes fadeInImg {
+   from { opacity: 0}
+    to { opacity: 1}
+}
+
+
+.img-loading {
+  opacity: 0;
+  width: 100%;
+  height: auto;
+}
+ 
+.img-loaded{
+  animation: fadeInImg cubic-bezier(0.23, 1, 0.32, 1) 1;
+  position: relative;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 0.7s;
+  animation-delay: 0.1s;
+}
+ 
+
+
 
 /*Combo Login*/
 .w-25.h-25.rounded-top.rounded-bottom.img-login {
-
   margin-top: 10px;
 }
 
 /*Menu Login*/
-
 .text-login-authed {
-
   padding-right:8px
 }
-  .rounded-top.rounded-bottom.img-login-authed {
+
+.rounded-top.rounded-bottom.img-login-authed {
  width: 30px;
  height:  30px;
 }
 
 
 .form-check-label {
-
    font-size: 14pt;
 }
-
 
 .nav-link {
   font-size: 14pt;
 }
 
 .icon-vote {
-    background-color: #df4b0a;
+  background-color: #df4b0a;
 }
 
 

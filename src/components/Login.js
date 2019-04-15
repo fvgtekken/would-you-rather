@@ -4,6 +4,7 @@ import { setAuthedUser } from '../actions/authedUser'
 import { Row, Col, Button, FormGroup, Label, Input, Card, 
   CardHeader, CardBody } from 'reactstrap'
 
+
 class LogIn extends Component {
 
   state = {
@@ -68,6 +69,7 @@ class LogIn extends Component {
               <Card style={{ color: '#333' }}>
                  <CardHeader>Sign in:</CardHeader>
                   <Col sm={{ size: 8, offset: 2 }} >
+               
                      <img src={this.state.imgSrc} alt="..." className="w-25 h-25 rounded-top rounded-bottom img-login" />
                  </Col>
                   <CardBody>

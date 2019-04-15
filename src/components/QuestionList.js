@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap'
-import QuestionPreview from './QuestionPreview'
- 
+import QuestionPreview from './typeQuestion/QuestionPreview'
+import NoQuestion from './common/NoQuestion'
 
  const QuestionList = (props) => {
 
@@ -12,20 +12,22 @@ import QuestionPreview from './QuestionPreview'
   })
 
 
-     
-return orderedQuestions.length > 0
-    ?
+
+return orderedQuestions.length > 0 ?
     <Row>
       <Col sm={12}>
-        {orderedQuestions.map((question) => (
+        {orderedQuestions.map((question, index) => (
           <QuestionPreview
+            index= {index}
             key={question.id}
             question={question}
             answered={answered} />
         ))}
         </Col>
       </Row>: <div className="center">
-        <span > No more questions :(</span>
+        <span >
+          <NoQuestion titleQuestion={!answered?'No UnAnswered Questions Found':'No Answered Questions Found'} />
+        </span>
       </div>
 
  }

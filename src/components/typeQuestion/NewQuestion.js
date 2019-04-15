@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { handleSaveQuestion } from '../actions/shared.js'
-import { Row, Col, Button, FormGroup, Input, Card, 
+import { handleSaveQuestion } from '../../actions/shared.js'
+import { Row, Col, Button, FormGroup, Input, Card, CardTitle,
   CardHeader, CardBody } from 'reactstrap'
 
 class NewQuestion extends Component {
@@ -16,9 +16,6 @@ class NewQuestion extends Component {
   state = this.defaultState
 
   handleChange = (e) => {
-
-    console.log(this.state);
-       console.log(this.state);
 
     const optionText = e.target.id
     const text = e.target.value
@@ -35,16 +32,20 @@ class NewQuestion extends Component {
   }
 
   handleSubmit = (e) => {
+
+
     e.preventDefault()
     const { state: { optionOneText, optionTwoText}, props: { authedUser, dispatch} } = this
     dispatch(handleSaveQuestion(authedUser, optionOneText, optionTwoText))
+ 
+    /* Reset de Form  and redirecting to home, after using dispatch to add the new question*/
     this.setState({
       ...this.defaultState,
       toHome: true
     })
   }
 
-  renderForm = () => (
+  renderForm = (disabled) => (
     
     <form onSubmit={this.handleSubmit}>
        <FormGroup>
@@ -55,7 +56,7 @@ class NewQuestion extends Component {
           <Input type="text" name="question2" id="optionTwoText" placeholder="Enter Second Question" onChange={this.handleChange} />
         </FormGroup>
       <Button
-        disabled={this.state.disabled} className="ButtonCard" color="primary"
+        disabled={disabled} className="ButtonCard" color="primary"
         type="submit" >
         Submit
       </Button>
@@ -67,17 +68,19 @@ class NewQuestion extends Component {
 
   render() {
 
-    console.log(this.state.disabled)
+    const { disabled } = this.state
     const { props: { authedUser} } = this
 
-    return this.state.toHome ? <Redirect to='/' /> 
+
+    return this.state.toHome ? <Redirect to='/home' /> 
     : <Row>
         <Col sm="12" >
           <Card style={{ color: '#333' }}>
               <CardHeader>{authedUser} - New Question</CardHeader>
+              <CardTitle>Would you rather...</CardTitle>
               <CardBody>
                  
-                  {this.renderForm()}        
+                  { this.renderForm(disabled) }        
                
               </CardBody>
            </Card>

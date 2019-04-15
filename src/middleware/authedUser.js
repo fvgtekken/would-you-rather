@@ -1,34 +1,35 @@
 /*
- * Authed User Middleware
  *
- * Keeps the authedUser logged in even after browser refresh
- * by utilizing a cookie to remember the authed user name.
- * Why? I got tired of "logging in" whenever the app is refreshed.
+ * awfull experinece be redirected to login area every time that I realod de page. :<
  */
 
 import {
   SET_AUTHED_USER,
-  GET_AUTHED_USER_FROM_COOKIE,
+  GET_AUTHED_USER_FROM_LOCAL,
   LOGOUT_AUTHED_USER } from '../actions/authedUser'
 
-const COOKIE_NAME = 'authedUser'
-const COOKIE_DURATION = 1
+const LOCAL_NAME = 'authedUser'
+
 
 const authedUser = (store) => (next) => (action) => {
   switch (action.type) {
 
     case SET_AUTHED_USER :
-      setCookie(COOKIE_NAME, action.id, COOKIE_DURATION)
+ 
+      setUserLocal (LOCAL_NAME, action.id) 
       return next(action)
 
-    case GET_AUTHED_USER_FROM_COOKIE :
-      const authedUser = getCookie(COOKIE_NAME)
+    case GET_AUTHED_USER_FROM_LOCAL :
+      
+      const authedUser = getUserLocal()
       action.id = authedUser ? authedUser : null
-      return next(action)
+          
+       return next(action)
 
     case LOGOUT_AUTHED_USER :
-      setCookie(COOKIE_NAME, action.id, -1)
-      action.id = null
+      
+      removeUserLocal()
+      action.id = null;
       return next(action)
 
     default :
@@ -36,30 +37,35 @@ const authedUser = (store) => (next) => (action) => {
   }
 }
 
-/*
- * setCookie and getCookie functions obtained from w3schools at:
- * https://www.w3schools.com/js/js_cookies.asp
- */
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) === 0) {
-      return c.substring(name.length, c.length);
-    }
+
+
+ function getUserLocal () {
+
+      if(localStorage.getItem('userLogged')) {
+         const ObjUser = JSON.parse(localStorage.getItem('userLogged'));
+         return ObjUser.id;
+      }
   }
-  return "";
-}
+
+
+  function setUserLocal (USER_NAME, id) {
+
+    if(!localStorage.getItem('userLogged')) {
+        localStorage.setItem('userLogged', JSON.stringify ({
+              user_name: USER_NAME,
+              id:id
+        }));
+    }
+  }  
+
+  function removeUserLocal () {
+
+      if(localStorage.getItem('userLogged')){
+          localStorage.removeItem('userLogged');  
+      }
+
+    
+  }
 
 export default authedUser

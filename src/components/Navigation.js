@@ -30,6 +30,8 @@ class Navigation extends React.Component {
     this.props.dispatch(logoutAuthedUser())
   }
 
+  
+
   navItemsLogin = () => {
 
      return (<Navbar color="light" light expand="md">
@@ -54,17 +56,20 @@ class Navigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/questions">Home</NavLink>
+                <NavLink tag={RRNavLink} to="/home">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/addQuestion">New Question</NavLink>
+                <NavLink tag={RRNavLink} to="/add">New Question</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/leaderBoard">LeaderBoard</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                 <span>{this.getUserAuthedInfo()}</span>
+                 {this.props.username && this.props.avatar ? <span className="navbar-user-info">
+                    <span className="text-login-authed">{this.props.username}</span>
+                    <img src={this.props.avatar} alt="..." className="rounded-top rounded-bottom img-login-authed" />
+                  </span>:null}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
@@ -83,9 +88,6 @@ class Navigation extends React.Component {
 
 
   render() {
-
- 
-
     return (
       <div>
          {this.props.userIsAuthed?this.navItemsAuthed():this.navItemsLogin()}
@@ -95,6 +97,8 @@ class Navigation extends React.Component {
 }
 
 function mapStateToProps ({ authedUser, users }) {
+
+
   return {
     userIsAuthed: authedUser !== null,
     username: users[authedUser] ? users[authedUser].name : null,

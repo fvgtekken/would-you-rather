@@ -7,46 +7,48 @@ import Navigation from './Navigation'
 import Login from './Login'
 import QuestionsContainer from './QuestionsContainer'
 import Home from './Home'
-import NewQuestion from './NewQuestion'
+import NewQuestion from './typeQuestion/NewQuestion'
 import LeaderBoard from './LeaderBoard'
-import { getAuthedUserFromCookie } from '../actions/authedUser'
-import { fetchInitialData } from '../actions/shared'
+import { getAuthedUserFromLocal } from '../actions/authedUser'
+import { fetchData } from '../actions/shared'
 
 
-import '../assets/css/App.css';
+
 
 class App extends Component {
 
 
  componentDidMount() {
-    this.props.getAuth(getAuthedUserFromCookie())
-    this.props.getData(fetchInitialData())
+    this.props.getAuthedUser(getAuthedUserFromLocal())
+    this.props.getData(fetchData())
   }
 
-  loginRoutes = () => (
-    <Switch>
-      <Route exact path='/login' component={Login} />
-      <Redirect from='*' to='/login' />
-    </Switch>
-  )
+  loginRoutes = () => {
+
+    return(<Switch>
+              <Route exact path='/login' component={Login} />
+              <Redirect from='*' to='/login' />
+          </Switch>)
+  }
 
 
- authedRoutes = () => (
-    <Switch>
-      <Route exact path='/' component={Home} />
+ authedRoutes = () => {
+
+    return(<Switch>
+      <Route exact path='/home' component={Home} />
+      <Route exact path='/add' component={NewQuestion} />
       <Route exact path='/questions/:questionId' component={ QuestionsContainer } />
-      <Route exact path='/addQuestion' component={NewQuestion} />
       <Route exact path='/leaderBoard' component={LeaderBoard} />
-      <Route exact path='/questions' component={Home} />
-      <Redirect from='*' to='/' />
-    </Switch>
-  )
+      <Redirect from='*' to='/home' />
+    
+    </Switch>);
+  }
 
 
 
   render() {
 
-    console.log(this.props.displayLogin);
+      const {displayLogin} = this.props
 
     return (
       <BrowserRouter>
@@ -58,7 +60,7 @@ class App extends Component {
                  <Container>    
                       <Row>
                         <Col sm={{ size: 8, order: 2, offset: 2 }}>
-                          {this.props.displayLogin
+                          {displayLogin
                           ? this.loginRoutes()
                           : this.authedRoutes()}
                         </Col>
@@ -68,7 +70,6 @@ class App extends Component {
             </div>
              </Fragment>
          </BrowserRouter>
-       
     );
   }
 }
@@ -82,8 +83,8 @@ function mapStateToProps ({ authedUser, questions }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getData: () => dispatch(fetchInitialData()),
-    getAuth: () => dispatch(getAuthedUserFromCookie())
+    getData: () => dispatch(fetchData()),
+    getAuthedUser: () => dispatch(getAuthedUserFromLocal())
   }
 };
 
