@@ -16,9 +16,9 @@ import NoQuestion from './common/NoQuestion'
 return orderedQuestions.length > 0 ?
     <Row>
       <Col sm={12}>
-        {orderedQuestions.map((question, index) => (
+        {orderedQuestions.map((question) => (
           <QuestionPreview
-            index= {index}
+   
             key={question.id}
             question={question}
             answered={answered} />
