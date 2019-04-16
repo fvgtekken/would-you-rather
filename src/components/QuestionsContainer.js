@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import QuestionAnswering from './typeQuestion/QuestionAnswering'
 import QuestionResults from './typeQuestion/QuestionResults'
-import NoQuestion from './common/NoQuestion'
 
 /** Container component for answering questions or displaying results */
 const QuestionContainer = ({

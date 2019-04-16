@@ -1,13 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/loggedUser'
-import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav,
-  NavItem, NavLink, UncontrolledDropdown, DropdownToggle, 
-  DropdownMenu, DropdownItem } from 'reactstrap';
-  import { NavLink as RRNavLink } from 'react-router-dom';
-  import  NavLogged  from './NavLogged'
-  import  NavLogin  from './NavLogin'
+import  NavLogged  from './NavLogged'
+import  NavLogin  from './NavLogin'
 
 
 
