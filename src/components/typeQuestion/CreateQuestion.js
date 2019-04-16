@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { settingSaveQuestion } from '../../actions/shared.js'
+import { Redirect } from 'react-router-dom'
 import { Row, Col, Button, FormGroup, Input, Card, CardTitle,
   CardHeader, CardBody } from 'reactstrap'
 
@@ -45,7 +45,7 @@ class CreateQuestion extends Component {
     })
   }
 
-  renderForm = (disabled) => (
+  setQuestionForm = (disabled) => (
     
     <form onSubmit={this.handleSubmit}>
        <FormGroup>
@@ -68,11 +68,11 @@ class CreateQuestion extends Component {
 
   render() {
 
-    const { disabled } = this.state
+    const { disabled, toHome } = this.state
     const { props: { authedUser} } = this
 
 
-    return this.state.toHome ? <Redirect to='/home' /> 
+    return toHome ? <Redirect to='/home' /> 
     : <Row>
         <Col sm="12" >
           <Card style={{ color: '#333' }}>
@@ -80,7 +80,7 @@ class CreateQuestion extends Component {
               <CardTitle>Would you rather...</CardTitle>
               <CardBody>
                  
-                  { this.renderForm(disabled) }        
+                  { this.setQuestionForm(disabled) }        
                
               </CardBody>
            </Card>

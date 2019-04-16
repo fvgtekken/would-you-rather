@@ -8,41 +8,43 @@ import NoQuestion from './common/NoQuestion'
 const QuestionContainer = ({
   question,
   author,
-  optOne,
-  optTwo,
+  optionQuestionOne,
+  optionQuestionTwo,
   questionDoesNotExist
 }) => {
 
-  const renderQuestionNotFound = () => {
-  return (<div>  
-      <NoQuestion titleQuestion={'Bad Url -  Questions Found'}/>
-  </div>)
-   
-  };
 
-  const renderQuestionToAnswer = () => (
-    <QuestionAnswering
-      question={question}
-      author={author} /> 
-  );
+  const setTypeComponent=(type)=>{
 
-  const renderQuestionResults = () => (
-   <QuestionResults   
+   if (type==='detailQuestionVotes'){
+
+     return (<QuestionResults   
         question={question}
         author={author}
-        optOne={optOne}
-        optTwo={optTwo} />
-  )
+        optOne={optionQuestionOne}
+        optTwo={optionQuestionTwo} />) 
+
+   } else if(type==='answerQuetion') {
+
+        return ( <QuestionAnswering
+          question={question}
+          author={author} /> 
+        );
+
+   }
+
+  
+
+  }
 
 
-
-  const optionToDisplay = () => {
-   return  optOne || optTwo ? renderQuestionResults() : renderQuestionToAnswer()
+  const optionToReder = () => {
+   return  optionQuestionOne || optionQuestionTwo ? setTypeComponent('detailQuestionVotes') : setTypeComponent('answerQuetion')
   };
 
   return (
     <div>
-      {questionDoesNotExist ? renderQuestionNotFound() : optionToDisplay() }
+      {optionToReder() }
     </div>
   )
 }
@@ -51,23 +53,14 @@ function mapStateToProps ({ users, questions, authedUser }, ownProps) {
   
   const question = questions[ownProps.match.params.questionId]
 
-  /*
-   * Url o Question Doesnt exits
-   */
-  if (!question){
-        return { questionDoesNotExist: true }
-  
-  }
-  
-
   const author = users[question.author]
-  const optOne = question.optionOne.votes.includes(authedUser)
-  const optTwo = question.optionTwo.votes.includes(authedUser)
+  const optionQuestionOne = question.optionOne.votes.includes(authedUser)
+  const optionQuestionTwo = question.optionTwo.votes.includes(authedUser)
 
   return {
     loading: false,
-    optOne,
-    optTwo,
+    optionQuestionOne,
+    optionQuestionTwo,
     question,
     author
   }

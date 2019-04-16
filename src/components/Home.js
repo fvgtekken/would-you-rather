@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Row, Col, TabContent, TabPane, Nav, 
    NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
-import  QuestionList  from './QuestionList'
+import  QuestionItems from './QuestionItems'
 
 class Home extends Component {
 
@@ -65,14 +65,14 @@ class Home extends Component {
           <TabPane tabId="1">
              <Row>
               <Col sm="12">
-                  <QuestionList questions={unanswered} answered={false} />
+                  <QuestionItems questions={unanswered} answered={false} />
               </Col>
             </Row>
           </TabPane>
          <TabPane tabId="2">
              <Row>
               <Col sm="12">
-                <QuestionList questions={answered} answered={true} />
+                <QuestionItems questions={answered} answered={true} />
               </Col>
             </Row>
              <hr/>

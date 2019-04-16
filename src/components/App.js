@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading-bar'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
-import Navigation from './Navigation'
+import Navigation from './nav/Navigation'
 import Login from './Login'
 import QuestionsContainer from './QuestionsContainer'
 import Home from './Home'
-import NewQuestion from './typeQuestion/NewQuestion'
+import CreateQuestion from './typeQuestion/CreateQuestion'
 import LeaderBoard from './LeaderBoard'
-import { getAuthedUserFromLocal } from '../actions/authedUser'
+import { getAuthedUserFromLocal } from '../actions/loggedUser'
 import { fetchData } from '../actions/shared'
 
 
@@ -19,7 +19,7 @@ class App extends Component {
 
 
  componentDidMount() {
-    this.props.getAuthedUser(getAuthedUserFromLocal())
+    this.props.getLoggedUser(getAuthedUserFromLocal())
     this.props.getData(fetchData())
   }
 
@@ -32,11 +32,11 @@ class App extends Component {
   }
 
 
- authedRoutes = () => {
+ loggedRoutes = () => {
 
     return(<Switch>
       <Route exact path='/home' component={Home} />
-      <Route exact path='/add' component={NewQuestion} />
+      <Route exact path='/add' component={CreateQuestion} />
       <Route exact path='/questions/:questionId' component={ QuestionsContainer } />
       <Route exact path='/leaderBoard' component={LeaderBoard} />
       <Redirect from='*' to='/home' />
@@ -48,7 +48,7 @@ class App extends Component {
 
   render() {
 
-      const {displayLogin} = this.props
+      const {displayNav} = this.props
 
     return (
       <BrowserRouter>
@@ -60,9 +60,9 @@ class App extends Component {
                  <Container>    
                       <Row>
                         <Col sm={{ size: 8, order: 2, offset: 2 }}>
-                          {displayLogin
+                          {displayNav
                           ? this.loginRoutes()
-                          : this.authedRoutes()}
+                          : this.loggedRoutes()}
                         </Col>
                       </Row>
                  </Container>
@@ -77,14 +77,14 @@ class App extends Component {
 function mapStateToProps ({ authedUser, questions }) {
   return {
     loading: Object.keys(questions).length === 0,
-    displayLogin: authedUser === null
+    displayNav: authedUser === null
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getData: () => dispatch(fetchData()),
-    getAuthedUser: () => dispatch(getAuthedUserFromLocal())
+    getLoggedUser: () => dispatch(getAuthedUserFromLocal())
   }
 };
 

@@ -1,32 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from '../actions/loggedUser'
 import { Row, Col, Button, FormGroup, Label, Input, Card, 
   CardHeader, CardBody } from 'reactstrap'
 
 
 class LogIn extends Component {
 
+
+
   state = {
     imgSrc: 'https://i.ibb.co/syDhDQc/default.jpg',
     userToSignIn: null,
-    disabled: true
+    disabledSubmit: true
   }
 
  handleChange = (e) => {
 
      //copying from this.props.users OBJ the selected user and pasting it to selectedUser
-    const { [e.target.value]: selectedUser } = this.props.users
-
-   
-    
+    const { [e.target.value]: selectedUser } = this.props.users  
     this.setState({
       imgSrc: selectedUser.avatarURL,
       userToSignIn: selectedUser.id
     }, () => {
       if (this.state.userToSignIn) {
         this.setState({
-          disabled: false
+          disabledSubmit: false
         })
       }
     })
@@ -38,7 +37,7 @@ class LogIn extends Component {
     this.props.dispatch(setAuthedUser(this.state.userToSignIn))
   }
 
-  renderForm = () => {
+  loginForm = () => {
 
    return(<form onSubmit={this.handleSubmit}>
        <FormGroup>
@@ -53,7 +52,7 @@ class LogIn extends Component {
           </Input>
         </FormGroup>
       <Button  className="ButtonCard" color="primary"
-        disabled={this.state.disabled}
+        disabled={this.state.disabledSubmit}
         type="submit" >
         Sign In
       </Button>
@@ -74,7 +73,7 @@ class LogIn extends Component {
                  </Col>
                   <CardBody>
                      
-                       {this.renderForm()}         
+                       {this.loginForm()}         
                    
                   </CardBody>                
                </Card>

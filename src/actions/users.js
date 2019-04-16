@@ -1,10 +1,11 @@
 import { _dataGetUsers } from '../utils/_DATA'
 
 export const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER'
-export const REMOVE_USER_ANSWER = 'REMOVE_USER_ANSWER'
 export const SAVE_USER_QUESTION = 'SAVE_USER_QUESTION'
-export const REMOVE_USER_QUESTION = 'REMOVE_USER_QUESTION'
 export const USERS_UPDATE = 'USERS_UPDATE'
+export const REMOVE_USER_ANSWER = 'REMOVE_USER_ANSWER'
+export const REMOVE_USER_QUESTION = 'REMOVE_USER_QUESTION'
+
 
 
 // These method are executed before the reducers

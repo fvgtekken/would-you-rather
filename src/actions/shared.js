@@ -1,6 +1,5 @@
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import {
-   _dataSaveQuestion,
+  _dataSaveQuestion,
   _dataSaveQuestionAnswer } from '../utils/_DATA'
 import {
   saveUserQuestion,
@@ -9,19 +8,31 @@ import {
   removeUserAnswer,
   fetchUsers } from './users'
 import {
-  saveQuestion,
-  removeQuestion,
-  saveQuestionVote,
-  removeQuestionVote,
+  saveQuestion, removeQuestion,
+  saveQuestionVote, removeQuestionVote,
   fetchQuestions } from './questions'
 
-/**
- * Users adds a new question. Action must:
- *  - make API call to save the question
- *  - update the questions portion of state
- *  - update the users portion of state
- */
-export function handleSaveQuestion (author, optionOneText, optionTwoText) {
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
+
+export function fetchData () {
+  
+  return (dispatch) => Promise.all([
+    
+    dispatch(showLoading()),
+    dispatch(fetchUsers()),
+    dispatch(fetchQuestions())
+  
+  ]).then(() => {
+    dispatch(hideLoading())
+  
+  })
+}
+
+
+
+
+/**/
+export function settingSaveQuestion (author, optionOneText, optionTwoText) {
   
   const question = { author, optionOneText, optionTwoText }
 
@@ -31,14 +42,14 @@ export function handleSaveQuestion (author, optionOneText, optionTwoText) {
       /* to set a new format obj to the question
       /* And simulate BE
       */
-    return _dataSaveQuestion(question).then((q) => {
+    return _dataSaveQuestion(question).then((question) => {
 
       // After de Question is saved the dispatch is called to Show the new states
       // but is possible to put theses dispatch before the first return to imporve
       // the user experienced (see method handlevote (Line 62))
 
-      dispatch(saveQuestion(q))
-      dispatch(saveUserQuestion(q.author, q.id))
+      dispatch(saveQuestion(question))
+      dispatch(saveUserQuestion(question.author, question.id))
 
     }).catch(() => {
       
@@ -49,12 +60,7 @@ export function handleSaveQuestion (author, optionOneText, optionTwoText) {
   }
 }
 
-/*
- * Users answers a question (votes). Action must:
- *  - make API call to save the answer
- *  - update the questions state
- *  - update the users  state
- */
+
 export function settingVote (authedUser, qid, answer) {
   
   return (dispatch) => {
@@ -83,18 +89,4 @@ export function settingVote (authedUser, qid, answer) {
     })
 
   }
-}
-
-export function fetchData () {
-  
-  return (dispatch) => Promise.all([
-    
-    dispatch(showLoading()),
-    dispatch(fetchUsers()),
-    dispatch(fetchQuestions())
-  
-  ]).then(() => {
-    dispatch(hideLoading())
-  
-  })
 }

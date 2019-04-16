@@ -47,7 +47,7 @@ export function updateQuestions (questions) {
 }
 
 /* 
- fetch all questions 
+ get from 'BE' all questions 
 */
 export function fetchQuestions () {
   return (dispatch) => {

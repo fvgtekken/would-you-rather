@@ -1,35 +1,30 @@
-/*
- *
- * awfull experinece be redirected to login area every time that I realod de page. :<
- */
+import { SET_LOGGED_USER, GET_LOGGED_USER_FROM_LOCAL, LOGOUT_USER } from '../actions/loggedUser'
 
-import {
-  SET_AUTHED_USER,
-  GET_AUTHED_USER_FROM_LOCAL,
-  LOGOUT_AUTHED_USER } from '../actions/authedUser'
 
-const LOCAL_NAME = 'authedUser'
 
 
 const authedUser = (store) => (next) => (action) => {
-  switch (action.type) {
 
-    case SET_AUTHED_USER :
+   const LOCAL_NAME = 'loggedUser'
+   
+   switch (action.type) {
+
+    case SET_LOGGED_USER :
  
-      setUserLocal (LOCAL_NAME, action.id) 
+      setUserLocal (LOCAL_NAME, action.idUser) 
       return next(action)
 
-    case GET_AUTHED_USER_FROM_LOCAL :
+    case GET_LOGGED_USER_FROM_LOCAL :
       
       const authedUser = getUserLocal()
-      action.id = authedUser ? authedUser : null
+      action.idUser = authedUser ? authedUser : null
           
        return next(action)
 
-    case LOGOUT_AUTHED_USER :
+    case LOGOUT_USER:
       
       removeUserLocal()
-      action.id = null;
+      action.idUser = null;
       return next(action)
 
     default :
@@ -44,17 +39,17 @@ const authedUser = (store) => (next) => (action) => {
 
       if(localStorage.getItem('userLogged')) {
          const ObjUser = JSON.parse(localStorage.getItem('userLogged'));
-         return ObjUser.id;
+         return ObjUser.idUser;
       }
   }
 
 
-  function setUserLocal (USER_NAME, id) {
+  function setUserLocal (USER_NAME, idUser) {
 
     if(!localStorage.getItem('userLogged')) {
         localStorage.setItem('userLogged', JSON.stringify ({
               user_name: USER_NAME,
-              id:id
+              idUser
         }));
     }
   }  

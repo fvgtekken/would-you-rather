@@ -90,3 +90,7 @@ for further details visit here: https://reactstrap.github.io/
 
 Icons and Fonts:
 ### for further details visit here:  https://github.com/FortAwesome/react-fontawesome
+
+lazy Loader Images
+###  $ npm install --save react-lazyload
+### for further details visit here: https://github.com/twobin/react-lazyload
