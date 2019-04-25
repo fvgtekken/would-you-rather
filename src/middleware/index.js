@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk'
 import logger from './logger'
-import authedUser from './authedUser'
+import loggedUser from './loggedUser'
 import { applyMiddleware } from 'redux'
 
 export default applyMiddleware(
   thunk,
   logger,
-  authedUser
+  loggedUser
 )
