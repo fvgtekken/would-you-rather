@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import QuestionAnswering from './typeQuestion/QuestionAnswering'
-import QuestionResults from './typeQuestion/QuestionResults'
+import QuestionDetailsVotes from './typeQuestion/QuestionDetailsVotes'
 
 /** Container component for answering questions or displaying results */
 const QuestionContainer = ({
@@ -17,7 +17,7 @@ const QuestionContainer = ({
 
    if (type==='detailQuestionVotes'){
 
-     return (<QuestionResults   
+     return (<QuestionDetailsVotes   
         question={question}
         author={author}
         optOne={optionQuestionOne}
