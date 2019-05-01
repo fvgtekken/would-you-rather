@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## About Would You Rather Project:
+This Project (Would You Rather) is part of the React Nanodegree programs of Udacity, the main goal of this exercise is to learn the architecture of Redux using React. This project is number four and is under review.  
+If you want to learn more about Udacity and their React Nanodegree please visit the follow link (https://www.udacity.com/course/react-nanodegree--nd019) 
+
+Would You Rather is a web app where you can make and vote questions. You can loging selecting 
+differents users that have been mocked up and saved in local storage also it is possible to see a Dashboard sorted by
+the users who maked and Answerd more questions.
+
+
+
 ## Available Scripts
 
 In the project directory, First you must install the dependencies then can run:
