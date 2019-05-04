@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import QuestionAnswering from './typeQuestion/QuestionAnswering'
 import QuestionDetailsVotes from './typeQuestion/QuestionDetailsVotes'
+import PageNoFound from './common/PageNoFound'
+
 
 /** Container component for answering questions or displaying results */
 const QuestionContainer = ({
@@ -9,7 +11,7 @@ const QuestionContainer = ({
   author,
   optionQuestionOne,
   optionQuestionTwo,
-  questionDoesNotExist
+  questionWorngId
 }) => {
 
 
@@ -38,12 +40,23 @@ const QuestionContainer = ({
 
 
   const optionToReder = () => {
-   return  optionQuestionOne || optionQuestionTwo ? setTypeComponent('detailQuestionVotes') : setTypeComponent('answerQuetion')
+
+        if(!questionWorngId) {
+         return  optionQuestionOne || optionQuestionTwo ? 
+        setTypeComponent('detailQuestionVotes') : setTypeComponent('answerQuetion')
+
+            } else {
+
+          return <PageNoFound />
+        }
+       
+  
+  
   };
 
   return (
     <div>
-      {optionToReder() }
+      {   optionToReder()   }
     </div>
   )
 }
@@ -51,6 +64,12 @@ const QuestionContainer = ({
 function mapStateToProps ({ users, questions, authedUser }, ownProps) {
   
   const question = questions[ownProps.match.params.questionId]
+  
+  if (!question){
+       return { questionWorngId: true }
+  } // bad url
+  
+ 
 
   const author = users[question.author]
   const optionQuestionOne = question.optionOne.votes.includes(authedUser)
